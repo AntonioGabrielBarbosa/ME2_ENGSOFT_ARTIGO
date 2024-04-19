@@ -6,14 +6,17 @@ body{
 }
 
 .main-login{
-    width: 100vw;
+    width: 98.5vw;
     height: 100vh;
     background-color: #201b2c; ;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
+.top-login{
+    width: 50;
+    height: 100;
+}
 .left-login{
     width: 100vh;
     height: 100vh;
@@ -99,3 +102,43 @@ body{
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px #00ff8052;
 }
+
+.btn-registro{
+    width: 5.8%;
+    padding: 10px 3px;
+    margin: 25px;
+    border:none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background-color:#00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+}
+
+
+body{
+    background-color:#201b2c ;
+}
+footer{
+    background-color: #f0ffffde;
+    height: 33vh;
+    width: 98.75vw;
+
+}
+footer > h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: x-large;
+    
+}
+
+

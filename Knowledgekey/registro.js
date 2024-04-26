@@ -1,9 +1,9 @@
 import { getDatabase, ref, set } from "firebase/database";
 
-function writeUserData(nome, email, senha, dataNascimento){
+function writeUserData(userId, nome, email, senha, dataNascimento){
 
     const db = getDatabase();
-    set(ref(db, 'users/' + email), {
+    set(ref(db, 'users/' + userId), {
 
         dataNascimento: dataNascimento,
         email: email,

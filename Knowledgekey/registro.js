@@ -12,17 +12,3 @@ function writeUserData(nome, email, senha, dataNascimento){
     });
 
 }
-
-function writeAdminData(nome, email, senha, dataNascimento) {
-
-    const db = getDatabase();
-    set(ref(db, 'admins/' + email), {
-
-        dataNascimento: dataNascimento,
-        email: email,
-        nome: nome,
-        senha: senha,
-
-    });
-    
-}

@@ -2,6 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
 import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+import { collection, addDoc } from "firebase/firestore";
+import { getDatabase, ref, set} from "firebase/database";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -47,6 +49,8 @@ registroForm.addEventListener('submit', (e) => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+
+
     // ...
     registroForm.reset();
     alert('Registro realizado com sucesso!')

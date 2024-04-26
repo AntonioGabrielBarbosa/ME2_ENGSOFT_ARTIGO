@@ -1,46 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Registro</title>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"></script>
 </head>
 
 <body>
-        <div class ='left-register'>
-            <h1>Cadastre-se <br>Enriqueça o mundo</h1>
-            <img src="imagem-animada-REGISTRO.svg" alt="Registro">
+    <div class='main-register'>
+        <div class='left-register'>
+            <h1>Cadastre-se<br>Enriqueça o mundo</h1>
+            <img src="imagem-animada-REGISTRO.svg" class='imagemRegistro' alt="Registro">
         </div>
         <div class='rigth-register'>
-            <div class='card-register'>
-                <h1>CADASTRO</h1>
-                <div class='textfieldRegistro'>
-                    <label for='Nome Completo'>Nome Completo</label>
-                    <input type="text" name="Nome Completo" placeholder="Digite seu Nome Completo" required>
+            <form id="registroForm">
+                <div class='card-register'>
+                    <h1>CADASTRO</h1>
+                    <div class='textfield'>
+                        <label for='Nome'>Nome Completo</label>
+                        <input type="text" id="nome" placeholder="Digite seu Nome Completo" required>
+                    </div>
+                    <div class='textfield'>
+                        <label for='email'>Email</label>
+                        <input type="email" id="email" placeholder="Digite seu Melhor Email" required>
+                    </div>
+                    <div class='textfield'>
+                        <label for='data de Nascimento'>Data de Nascimento </label>
+                        <input type="date" id="data" required>
+                    </div>
+                    <div class='textfield'>
+                        <label for='Senha'>Senha</label>
+                        <input type="password" id="senha" placeholder="Digite sua Senha" required>
+                    </div>
+                    <div class='textfield'>
+                        <label for='Senha'>Confirme sua Senha</label>
+                        <input type="password" id="confirmarSenha" placeholder="Digite sua senha novamente" required>
+                    </div>
+                    <button  type='submit' id="submit" class='btn-register'>Registrar</button>
                 </div>
-                <div class='textfieldRegistro'>
-                    <label for='Email'>Email</label>
-                    <input type="text" name="Melhor Email" placeholder="Digite seu Melhor Email" required>
-                </div>
-                <div class='textfieldRegistro'>
-                    <label for='Data de Nacimiento'>Data de Nacimiento </label>
-                    <input type="date" name="Data" required>
-                </div>
-                <div class='textfieldRegistro'>
-                    <label for='Senha'>Senha</label>
-                    <input type="password" name="Senha" placeholder="Digite sua Senha" required>
-                </div>
-                <div class='textfieldRegistro'>
-                    <label for='Senha'>Confrime sua Senha</label>
-                    <input type="password" name="Confirme sua Senha" placeholder="Digite sua senha novamente" required>
-                </div>
-                <button class='btn-register'>Registrar</button>
+            </form>
         </div>
     </div>
 
-
-
+    <script type="module" src="chatgpt.js"></script>
 </body>
 
 </html>

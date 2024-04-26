@@ -3,43 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "style.css">
     <title>KnowledgeKey</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
+<header>
+    <a href="formulario.html">TESTE</a>
+    <a href="login.html">
+    <button class = 'btn-fazerLogin'>Faca Login</button>
+    </a>
+
+    <a href="formulario.html">
+        <button class = 'btn-meuPerfil'>Publique seu Artigo</button>
+    </a>
+</header>
+
+
 <body>
-
-
-    <main>
-        <div class = 'main-login'>
-       
-            <div class = 'left-login'>
-                <h1> Faca Login <br> Enriqueca o Mundo</h1>
-                <img src="Imagem-Animada-Login.svg" class = "left-login-login" alt="Conhecimento">
-            </div>
-            
-            <div class = 'rigth-login'>
-                <div class = 'card-login'>
-                    <h1>LOGIN</h1>
-                    <div class = 'textfield'>
-                        <label for="Usuário"> Usuarios </label>
-                        <input type="text" name = "Usuário" 
-                        placeholder="Usuário">
-                    </div>
-                    <div class = 'textfield'>
-                        <label for="Senha"> Senha </label>
-                        <input type="password" name="Senha" 
-                        placeholder="Senha">
-                    </div>
-                    <button class = 'btn-login'>Login</button>
-
-                    <a href="registro.html">
-                        <button class = btn-registro>Nao tem uma Conta? <br>Cadastre-se aqui gratuitamente
-                    </button>
-                </a>
-                </div>
-            </div>
-        </div>
-    </main>
-
+    <div class ='titulo'>
+        KnowledgeKey
+    </div>
+    <div class = 'search-box'>
+        <input type="text" class="search-text" placeholder="Pesquisar...">
+        <a class="search-btn">
+            <img class = 'lupaAzul' src="loupe-blue.svg" alt="" width="25px" height="25px">
+            <img class = 'lupaBranca' src="loupe-white.svg" alt="" width="25px" height="25px">
+        </a>
+    </div>
 </body>
 </html>

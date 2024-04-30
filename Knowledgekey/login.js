@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
@@ -45,4 +43,3 @@ loginForm.addEventListener('submit', (e) => {
             alert(errorMessage);
         });
 });
->>>>>>> d3411708ea8473eb861207dfa7d3d6ce563a7973

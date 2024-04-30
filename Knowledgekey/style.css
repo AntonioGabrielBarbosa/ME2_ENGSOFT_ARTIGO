@@ -16,6 +16,7 @@ body{
 
 /*----------------------------------------------------------------------------------------------------*/
 /*PAGINA DE LOGIN*/
+
 .main-login{
     width: 100vw;
     height: 90vh;
@@ -44,6 +45,13 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.envio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
 }
 
 .card-login{
@@ -327,12 +335,11 @@ body{
 .btn-meuPerfil{
     position: absolute;
     left: 0;
-    height: auto;
     width: 10vw;
     padding: 16px 0px;
     margin: 25px;
     border:none;
-    border-radius: 50%;
+    border-radius: 8px;
     outline: none;
     text-transform: uppercase;
     font-weight: 800;
@@ -341,6 +348,7 @@ body{
     background-color:#00ff88;
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px #00ff8052;
+
 }
 
 /*----------------------------------------------------------------------------------------------------*/

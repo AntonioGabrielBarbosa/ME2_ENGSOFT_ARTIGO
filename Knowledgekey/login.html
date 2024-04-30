@@ -3,43 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href = "style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
 <body>
-
-
     <main>
-        <div class = 'main-login'>
-       
-            <div class = 'left-login'>
-                <h1> Faca Login <br> Enriqueca o Mundo</h1>
-                <img src="Imagem-Animada-Login.svg" class = "left-login-login" alt="Conhecimento">
+        <div class='main-login'>
+            <div class='left-login'>
+                <h1>Faça Login <br> Enriqueça o Mundo</h1>
+                <img src="Imagem-Animada-Login.svg" class="left-login-login" alt="Conhecimento">
             </div>
-            
-            <div class = 'rigth-login'>
-                <div class = 'card-login'>
-                    <h1>LOGIN</h1>
-                    <div class = 'textfield'>
-                        <label for="Usuário"> Usuarios </label>
-                        <input type="email" name = "Usuário" 
-                        placeholder="Usuário">
-                    </div>
-                    <div class = 'textfield'>
-                        <label for="Senha"> Senha </label>
-                        <input type="password" name="Senha" 
-                        placeholder="Senha">
-                    </div>
-                    <button class = 'btn-login'>Login</button>
-
+            <div class='rigth-login'>
+                <form id="paginaLogin" class="envio">
+                <div class='card-login'>
+                    
+                        <h1>LOGIN</h1>
+                        <div class='textfield'>
+                            <label for="Usuário">Usuários</label>
+                            <input type="email" name="Usuário" placeholder="Usuário" id="emailLogin">
+                        </div>
+                        <div class='textfield'>
+                            <label for="Senha">Senha</label>
+                            <input type="password" name="Senha" placeholder="Senha" id="senhaLogin">
+                        </div>
+                        <button class='btn-login'>Login</button>
+                    </form>
                     <a href="registro.html">
-                        <button class = btn-registro>Cadastre-se aqui gratuitamente
-                    </button>
-                </a>
+                        <button type="submit" id="submit" class='btn-registro'>Cadastre-se aqui gratuitamente</button>
+                    </a>
                 </div>
             </div>
         </div>
     </main>
-
 </body>
+<script type="module" src="login.js"></script>
 </html>

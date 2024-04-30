@@ -353,22 +353,9 @@ body{
 
 /*----------------------------------------------------------------------------------------------------*/
 /*Formulario*/
-.formulario{
-    margin-top: 20px;
-    width: 60vw;
-    
-
-    position: absolute;
-    
-    left: 50%;
-    transform: translate(-50%,-50%);
-
-
-    justify-content: center;
-    align-items: column;
-
-    
-    
+.formulario{   
+    width: 50vw;
+    height: auto;
     padding: 30px 35px;
     background-color: #2f2841;
     border-radius: 20px;
@@ -426,6 +413,39 @@ body{
 .btn-formulario{
     width: 100%;
     padding: 16px 0px;
+    border:none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background-color:#00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+}
+
+/*CARD DA PAGINA DE PERFIL*/
+.card-perfil{
+    width : 30vw;
+   position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: auto;
+    display: flex;
+    justify-content: center;
+    padding: 35px 35px;
+    background-color: #2f2841;
+    border-radius: 20px;
+    box-shadow: 2px 10px 30px #00000056;
+    margin-top: 100px;
+}
+
+.btn-sub{
+    margin-bottom: 20px;
+    width: 30vw;
+    height: auto;
     border:none;
     border-radius: 8px;
     outline: none;

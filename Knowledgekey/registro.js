@@ -17,6 +17,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
+
+
 const registroForm = document.getElementById('registroForm');
 
 registroForm.addEventListener('submit', (e) => {
@@ -40,11 +42,15 @@ registroForm.addEventListener('submit', (e) => {
                 nome: nome,
                 email: email,
                 data: data,
+                
             });
-          
         },
+        
+
         registroForm.reset(),
-        alert('Registro realizado com sucesso!')      
+        alert('Registro realizado com sucesso!'),
+        window.location.href = "login.html"
+      
     )
         .catch((error) => {
             console.error('Erro ao registrar usuário:', error.message);

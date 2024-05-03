@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
+
 <body>
     <main>
         <div class='main-login'>
@@ -13,10 +15,10 @@
                 <h1>Faça Login <br> Enriqueça o Mundo</h1>
                 <img src="Imagem-Animada-Login.svg" class="left-login-login" alt="Conhecimento">
             </div>
-            <div class='rigth-login'>
-                <form id="paginaLogin" class="envio">
+            <div class='right-login'> <!-- Correção aqui -->
                 <div class='card-login'>
-                    
+                    <form id="paginaLogin" class="envio">
+
                         <h1>LOGIN</h1>
                         <div class='textfield'>
                             <label for="Usuário">Usuários</label>
@@ -27,6 +29,7 @@
                             <input type="password" name="Senha" placeholder="Senha" id="senhaLogin">
                         </div>
                         <button class='btn-login'>Login</button>
+
                     </form>
                     <a href="registro.html">
                         <button type="submit" id="submit" class='btn-registro'>Cadastre-se aqui gratuitamente</button>
@@ -34,7 +37,9 @@
                 </div>
             </div>
         </div>
+        </div>
     </main>
+    <script type="module" src="login.js"></script>
 </body>
-<script type="module" src="login.js"></script>
+
 </html>

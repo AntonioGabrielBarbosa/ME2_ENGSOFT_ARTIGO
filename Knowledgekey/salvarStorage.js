@@ -1,5 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+import { getStorage, ref as storageRef, uploadBytes } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js"; // Importando o módulo do Firebase Storage
+
 
 // Configurações do Firebase
 const firebaseConfig = {
@@ -19,7 +21,11 @@ const app = initializeApp(firebaseConfig);
 // Referência ao banco de dados
 const database = getDatabase(app);
 
+// Referência ao armazenamento
+const storage = getStorage(app);
+
 const formSub = document.getElementById('formSub');
+
 
 formSub.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -30,10 +36,16 @@ formSub.addEventListener('submit', async (e) => {
     const titulo = document.getElementById('titulo').value;
     const assunto = document.getElementById('assunto').value;
     const descricao = document.getElementById('desc').value;
+    const pdfFile = document.getElementById('pdfFile').files[0]; // Obter o arquivo do input
+
 
     try {
+       // Upload do arquivo para o Firebase Storage
+       const storageReference = storageRef(storage, 'arquivos/' + pdfFile.name); // Renomeando a variável
+       await uploadBytes(storageReference, pdfFile);
+
         // Gerar uma nova chave única para o novo item
-        const newPostRef = push(ref(database, 'users/'));
+        const newPostRef = push(ref(database, 'ForumarioDeEnvio/'));
 
         // Obter a chave única gerada
         const newPostKey = newPostRef.key;
@@ -48,6 +60,8 @@ formSub.addEventListener('submit', async (e) => {
             horario: Date.now()
         };
 
+
+
         // Execute a operação de gravação
         await set(newPostRef, postData);
 
@@ -59,3 +73,4 @@ formSub.addEventListener('submit', async (e) => {
         alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
     }
 });
+

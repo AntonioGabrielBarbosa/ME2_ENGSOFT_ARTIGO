@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,25 +10,35 @@
 
 <header>
     <a href="login.html">
-    <button class = 'btn-fazerLogin'>Publique seu artigo</button>
+        <button class='btn-fazerLogin'>Publique seu artigo</button>
     </a>
 
     <a href="formulario.html">
-        <button class = 'btn-meuPerfil'>Deixe aqui sua dúvida</button>
+        <button class='btn-meuPerfil'>Deixe aqui sua dúvida</button>
     </a>
 </header>
 
 
 <body>
-    <div class ='titulo'>
+    <div class='titulo'>
         KnowledgeKey
     </div>
-    <div class = 'search-box'>
-        <input type="text" class="search-text" placeholder="Pesquisar...">
-        <a class="search-btn">
-            <img class = 'lupaAzul' src="loupe-blue.svg" alt="" width="25px" height="25px">
-            <img class = 'lupaBranca' src="loupe-white.svg" alt="" width="25px" height="25px">
-        </a>
+    <div class='search-box'>
+        <input type="text" class="search-text" placeholder="Pesquisar..." id="pesquisar">
+        <div class="filter">
+            <Select>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
+            </Select>
+        </div>
+        <button class="search-btn" id="botaoPesquisar">
+            <img class='lupaBranca' src="loupe-white.svg" alt="" width="25px" height="25px">
+        </button>
+
     </div>
+<script type="module" src="pesquisar.js"></script>
+
 </body>
+
 </html>

@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
-import { getStorage, ref as storageRef, uploadBytes } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js"; // Importando o módulo do Firebase Storage
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js"; // Importando o módulo do Firebase Storage
 
 
 // Configurações do Firebase
@@ -24,6 +25,8 @@ const database = getDatabase(app);
 // Referência ao armazenamento
 const storage = getStorage(app);
 
+const auth = getAuth();
+
 const formSub = document.getElementById('formSub');
 
 
@@ -40,30 +43,53 @@ formSub.addEventListener('submit', async (e) => {
 
 
     try {
-       // Upload do arquivo para o Firebase Storage
-       const storageReference = storageRef(storage, 'arquivos/' + pdfFile.name); // Renomeando a variável
-       await uploadBytes(storageReference, pdfFile);
+        
+        // Upload do arquivo para o Firebase Storage
+        const userId = auth.currentUser.uid;
+        
+        
 
-        // Gerar uma nova chave única para o novo item
-        const newPostRef = push(ref(database, 'ForumarioDeEnvio/'));
+        const newPostRef = push(ref(database, 'ForumarioDeEnvio/' + userId));
 
         // Obter a chave única gerada
         const newPostKey = newPostRef.key;
 
+        const newFormsRef= push(ref(database, 'Público/'+newPostKey));
+        const storageReference = storageRef(storage, 'arquivos/' + userId + '/' + newPostKey);
+        await uploadBytes(storageReference, pdfFile);
+
+        // Gerar uma nova chave única para o novo item
+
+
+
+        
+
         // Crie o objeto de dados a serem salvos
         const postData = {
-            nome: nome,
-            email: email,
-            titulo: titulo,
-            assunto: assunto,
-            descricao: descricao,
-            horario: Date.now()
+            Autor: nome,
+            Email: email,
+            Titulo: titulo,
+            Assunto: assunto,
+            Descricao: descricao,
+            Horario: Date.now(),
+            NomeArquivo:pdfFile.name,
+            UrlPdf: await getDownloadURL(storageReference) // Obter o URL do arquivo no Storage
         };
 
+        const salvarDataPost = {
+            Autor: nome,
+            Titulo: titulo,
+            Assunto: assunto,
+            Descricao: descricao,
+            NomeArquivo:pdfFile.name,
+            URLPdf: await getDownloadURL(storageReference) // Obter o URL do arquivo no Storage
 
+        }
 
         // Execute a operação de gravação
         await set(newPostRef, postData);
+
+        await set(newFormsRef,salvarDataPost)
 
         // Operação concluída com sucesso
         alert('Formulário enviado com sucesso!');

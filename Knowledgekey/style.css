@@ -263,16 +263,17 @@ body {
     cursor: pointer;
 }
 
-.lupaBranca {
-    display: none;
-}
-
-.search-box:hover>.search-text {
+.search-box>.search-text {
     width: 50vw;
     padding-left: 20px;
 }
 
-.search-box:hover>.search-btn {
+.search-text:focus{
+    width: 50vw;
+    padding-left: 20px;
+}
+
+.search-box>.search-btn {
     background: #2b134b;
 }
 
@@ -287,6 +288,16 @@ body {
 ::-webkit-input-placeholder {
     font: 17px;
     color: #aeaeae;
+}
+
+.filter{
+    top: 100px;
+    height: auto;
+}
+
+select{
+    height: 50px;
+    width: 100px;
 }
 
 .titulo {
@@ -437,9 +448,10 @@ body {
 /*CARD DA PAGINA DE PERFIL*/
 .card-perfil {
     margin: 0;
-    width: 50vw;
+    width: 75vw;
     height: 100vh;
-    justify-content: column;
+    display: grid;
+    place-items: center; /* Alinha itens ao centro vertical e horizontalmente */
     padding: 35px 35px;
     background-color: #2f2841;
     border-radius: 20px;
@@ -447,31 +459,95 @@ body {
     margin-top: 100px;
 }
 
-.btn-sub {
-    margin-top: 2vw;    
-    margin-left: 10vw;
-    margin-bottom: 5vw;
-    width: 30vw;
-    height: 08vh;
+.btn-sub,
+.btn-nome,
+.area-perfil {
+    width: auto; /* Defina a largura automaticamente */
+    max-width: 100%; /* Defina a largura máxima como 100% */
+    padding: 16px 20px; /* Ajuste o preenchimento conforme necessário */
+    margin: 10px; /* Ajuste a margem conforme necessário */
     border: none;
     border-radius: 10px;
     outline: none;
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: 800;
     letter-spacing: 3px;
     color: #2b134b;
-    background-color: #00ff88;
-    cursor: pointer;
-    box-shadow: 0px 10px 40px -12px #00ff8052;
+    
 }
 
-.card-perfil>h1{
-    font: 10vw;
-    justify-content: center;
-    align-items: center;
+.btn-nome, .btn-sub{
+    background-color: #00ff88;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+
+}
+
+.btn-sub{
+    cursor: pointer;
+    width: 58vw;
+    height: 8vh;
+}
+
+.card-perfil>h1,
+.area-perfil {
+    font-size: 2vw;
     color: #4ccdd9;
     font-weight: 800;
 }
+
+.btn-nome {
+    border-radius: 8px; /* Ajuste a borda do botão */
+    font-size: 1vw /*juste o tamanho da fonte conforme necessário */
+}
+
+.area-perfil {
+    font-size: 1.5vw; /* Ajuste o tamanho da fonte conforme necessário */
+}
+
+/*TABELA PERFIL*/
+/* Estilo para a tabela */
+table {
+    width: 58vw;
+    
+    margin-top: 20px;
+}
+
+/* Estilo para as células da tabela */
+td, th {
+    border: 1px solid #ffffff;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Estilo para a primeira célula da tabela (Título do Documento) */
+th:first-child {
+    background-color: #2f2841;
+}
+
+/* Estilo para as linhas pares da tabela */
+tr:nth-child(even) {
+    background-color: #2f2841;
+}
+
+/* Estilo para as linhas ímpares da tabela */
+tr:nth-child(odd) {
+    background-color: #2f2841;
+}
+
+/* Estilo para o botão "Deletar" */
+button {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Estilo para o botão "Deletar" quando hover */
+
+
+
+
 
 /*----------------------------------------------------------------------------------------------------*/
 /*RESPONSIBILIDADE*/

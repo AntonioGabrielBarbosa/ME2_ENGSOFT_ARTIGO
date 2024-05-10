@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA6yHr-xIuuga9isPeLnUoyh2578Ts3W0Y",
@@ -15,9 +15,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const db = getFirestore();
-
-
+const db = getDatabase();
 
 const registroForm = document.getElementById('registroForm');
 
@@ -38,20 +36,18 @@ registroForm.addEventListener('submit', (e) => {
     createUserWithEmailAndPassword(auth, email, senha)
         .then((userCredential) => {
             const user = userCredential.user;
-            return setDoc(doc(db, "usuarios", user.uid), {
+            return set(ref(db, `usuarios/${user.uid}`), {
                 nome: nome,
                 email: email,
-                data: data,
-                
+                dataNcto: data,
+                criacao : Date.now()
             });
-        },
-        
-
-        registroForm.reset(),
-        alert('Registro realizado com sucesso!'),
-        window.location.href = "login.html"
-      
-    )
+        })
+        .then(() => {
+            registroForm.reset();
+            alert('Registro realizado com sucesso!');
+            window.location.href = "login.html";
+        })
         .catch((error) => {
             console.error('Erro ao registrar usuário:', error.message);
             alert('Erro ao registrar usuário. Verifique o console para mais detalhes.');

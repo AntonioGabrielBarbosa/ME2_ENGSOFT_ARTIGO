@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +11,38 @@
 
 <body>
     <div class="card-perfil">
-        <h1>Essa pagina é exclusiva para a submissao e a edicao dos seus artigos cientificos 
-            <br>---------------------------------------------------------------------------------------</h1>
-       <h1>Clique no botao de formulario e enriqueca o mundo</h1> 
-    <a href="submissao.html">
-    <button class="btn-sub" id="btn-forms">FORMULARIO DE SUBMISSAO DE ARTIGOS
-    </button>
-</a>
-    <h1>---------------------------------------------------------------------------------------</h1>
-    <h1>Acompanhe seu artigos</h1>
-    <div class="gradeAcomp">
-        
-    </div>
+        <div class="btn-nome">
+            Usuário: <span id="nome1"></span>--------- <a href="index.html"> LogOut</a>
+        </div>
+        <div class="area-perfil" id="areaPerfil">
+            Nome: <span id="nome"></span><br>
+            Email: <span id="email"></span><br>
+            Criação: <span id="criacao"></span><br>
 
-</div>
+        </div>
+        <a href="submissao.html">
+            <button class="btn-sub" id="btn-forms">FORMULARIO DE SUBMISSAO DE ARTIGOS
+            </button>
+        </a>
+        <h1>Acompanhe seu artigos</h1>
+        <div class="area-perfil">
+        <table id="artigosTable">
+            <thead>
+                <tr>
+                    <th>Título do Documento</th>
+                    <th>Data</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody id="artigosTableBody">
+                <!-- Aqui serão inseridas as linhas da tabela dinamicamente -->
+            </tbody>
+            
+        </table>
+    </div>
+    </div>
+    <script type="module" src="acessarConta.js"></script>
 
 </body>
+
 </html>

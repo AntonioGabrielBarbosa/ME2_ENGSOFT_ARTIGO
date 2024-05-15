@@ -83,23 +83,51 @@ function exibirPerfilUsuario(userID) {
                 const documento = documentosData[documentoKey];
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${documento.titulo}</td>
-                    <td>${documento.data}</td>
+                    <td>${documento.Titulo}</td>
+                    <td>${documento.Horario}</td>
                 `;
                 const tdAcao = document.createElement('td');
+
+                // Botão de deletar
                 const btnDeletar = document.createElement('button');
-                btnDeletar.textContent = 'Deletar';
+                const imgLixeira = document.createElement('img');
+                imgLixeira.src = 'delete.png';  // Substitua pelo caminho correto da sua imagem
+                imgLixeira.alt = 'Deletar';
+                imgLixeira.classList.add('icone-lixeira');
                 btnDeletar.classList.add('btn-deletar');
                 btnDeletar.onclick = function() {
                     deletarDocumento(userID, documentoKey);
                 };
+                btnDeletar.appendChild(imgLixeira);
+
+                // Botão de editar
+                const btnEditar = document.createElement('button');
+                const imgEditar = document.createElement('img');
+                imgEditar.src = 'edit.png';  // Substitua pelo caminho correto da sua imagem
+                imgEditar.alt = 'Editar';
+                imgEditar.classList.add('icone-editar');
+                btnEditar.classList.add('btn-editar');
+                btnEditar.onclick = function() {
+                    editarDocumento(userID, documentoKey);
+                };
+                btnEditar.appendChild(imgEditar);
+
+                // Adicionando os botões à célula da tabela
                 tdAcao.appendChild(btnDeletar);
+                tdAcao.appendChild(btnEditar);
                 tr.appendChild(tdAcao);
                 document.getElementById('artigosTableBody').appendChild(tr);
             });
         }
     });
 }
+
+// Função de edição de documento (a ser implementada)
+function editarDocumento(userID, documentoKey) {
+    // Lógica para editar o documento
+    console.log('Editar documento:', userID, documentoKey);
+}
+
 
 // Verificar a autenticação do usuário
 auth.onAuthStateChanged((user) => {

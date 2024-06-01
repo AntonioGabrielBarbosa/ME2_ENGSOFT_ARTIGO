@@ -17,6 +17,12 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getDatabase();
 
+
+function formatarData(timestamp) {
+    const data = new Date(timestamp);
+    return data.toLocaleString();
+}
+
 const registroForm = document.getElementById('registroForm');
 
 registroForm.addEventListener('submit', (e) => {
@@ -40,7 +46,7 @@ registroForm.addEventListener('submit', (e) => {
                 nome: nome,
                 email: email,
                 dataNcto: data,
-                criacao : Date.now()
+                criacao: formatarData(Date.now()) // Armazenar a data de criação formatada
             });
         })
         .then(() => {

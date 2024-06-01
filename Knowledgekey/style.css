@@ -225,21 +225,88 @@ body {
 
 /*----------------------------------------------------------------------------------------------------*/
 /*PAGINA PRINCIPAL*/
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.titulo {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 90px;
+    background: linear-gradient(45deg, #00b8ca, #19bfcf, #32c6d4, #4ccdd9);
+    background-size: 400% 100%;
+    animation: degrade 10s linear infinite alternate;
+    background-clip: none;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+@keyframes degrade {
+    0% {
+        background-position-x: 0%;
+    }
+    100% {
+        background-position-x: 400%;
+    }
+}
+
+.btn-fazerLogin, .btn-meuPerfil {
+    position: absolute;
+    width: 10vw;
+    padding: 16px 0px;
+    margin: 25px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: #2b134b;
+    background-color: #00ff88;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+}
+
+.btn-fazerLogin {
+    right: 0;
+}
+
+.btn-meuPerfil {
+    left: 0;
+}
 
 .search-box {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     background-color: #fff;
     height: 50px;
     padding: 10px;
     border-radius: 40px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 60%; /* Adicionado para centralizar */
 }
 
 .search-text {
@@ -248,9 +315,18 @@ body {
     border: 0;
     outline: 0;
     padding: 0;
-
     transition: 0.4s;
     font-size: 16px;
+}
+
+.search-box .search-text {
+    width: 50vw;
+    padding-left: 20px;
+}
+
+.search-text:focus {
+    width: 50vw;
+    padding-left: 20px;
 }
 
 .search-btn {
@@ -261,27 +337,14 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-}
-
-.search-box>.search-text {
-    width: 50vw;
-    padding-left: 20px;
-}
-
-.search-text:focus{
-    width: 50vw;
-    padding-left: 20px;
-}
-
-.search-box>.search-btn {
     background: #2b134b;
 }
 
-.search-box:hover>.search-btn .lupaAzul {
+.search-box:hover .search-btn .lupaAzul {
     display: none;
 }
 
-.search-box:hover>.search-btn .lupaBranca {
+.search-box:hover .search-btn .lupaBranca {
     display: block;
 }
 
@@ -290,84 +353,48 @@ body {
     color: #aeaeae;
 }
 
-.filter{
+.filter {
     top: 100px;
     height: auto;
 }
 
-select{
+select {
     height: 50px;
     width: 100px;
 }
 
-.titulo {
-    font-family: "Oswald", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-
+.resultados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20px; /* Espaço entre a barra de pesquisa e os resultados */
     position: absolute;
-    top: 25%;
+    top: calc(50% + 60px); /* Ajuste para ficar abaixo da barra de pesquisa */
     left: 50%;
-    transform: translate(-50%, -50%);
-
-    font-size: 90px;
-
-    background: linear-gradient(45deg, #00b8ca, #19bfcf, #32c6d4, #4ccdd9);
-    background-size: 400% 100%;
-    animation: degrade 10s linear infinite alternate;
-    background-clip: none;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
+    transform: translate(-50%, 0);
 }
 
-@keyframes degrade {
-    0% {
-        background-position-x: 0%;
-    }
-
-    100% {
-        background-position-x: 400%;
-    }
+.resultado-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.btn-fazerLogin {
-    position: absolute;
-    right: 0;
-    width: 10vw;
-    padding: 16px 0px;
-    margin: 25px;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 800;
-    letter-spacing: 3px;
-    color: #2b134b;
-    background-color: #00ff88;
-    cursor: pointer;
-    box-shadow: 0px 10px 40px -12px #00ff8052;
+.resultado-item h3 {
+    margin: 0;
+    font-size: 1.2em;
 }
 
-.btn-meuPerfil {
-    position: absolute;
-    left: 0;
-    width: 10vw;
-    padding: 16px 0px;
-    margin: 25px;
-    border: none;
-    border-radius: 8px;
-    outline: none;
-    text-transform: uppercase;
-    font-weight: 800;
-    letter-spacing: 3px;
-    color: #2b134b;
-    background-color: #00ff88;
-    cursor: pointer;
-    box-shadow: 0px 10px 40px -12px #00ff8052;
-
+.resultado-item p {
+    margin: 5px 0;
 }
+
 
 /*----------------------------------------------------------------------------------------------------*/
 /*Formulario*/
@@ -459,9 +486,12 @@ select{
     margin-top: 100px;
 }
 
+
 .btn-sub,
-.btn-nome,
+.btn-nome>span,
+.btn-nome>a,
 .area-perfil {
+    
     width: auto; /* Defina a largura automaticamente */
     max-width: 100%; /* Defina a largura máxima como 100% */
     padding: 16px 20px; /* Ajuste o preenchimento conforme necessário */
@@ -474,6 +504,16 @@ select{
     letter-spacing: 3px;
     color: #2b134b;
     
+}
+
+
+
+
+.btn-nome{
+    width: 58vw;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .btn-nome, .btn-sub{
@@ -490,7 +530,7 @@ select{
 
 .card-perfil>h1,
 .area-perfil {
-    font-size: 2vw;
+    font-size: 50px;
     color: #4ccdd9;
     font-weight: 800;
 }
@@ -501,7 +541,7 @@ select{
 }
 
 .area-perfil {
-    font-size: 1.5vw; /* Ajuste o tamanho da fonte conforme necessário */
+    font-size: 1.3vw; /* Ajuste o tamanho da fonte conforme necessário */
 }
 
 /*TABELA PERFIL*/
@@ -536,6 +576,8 @@ tr:nth-child(odd) {
 
 /* Estilo para o botão "Deletar" */
 button {
+
+    width: 2vw;
     background-color: #4ccdd9;
     border: none;
     padding: 5px 10px;
@@ -550,28 +592,70 @@ button {
 }
 
 .btn-deletar{
-    margin-right: 50px;
+    margin: 0;
+}
+
+.btnEditar{
+    margin: 0
+}
+
+td .btn-deletar, td .btnEditar{
+    display: inline;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .icone-lixeira, .icone-editar {
+    display: inline;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3px;
+    padding: 03px;
     color: white;
     width: 02vw;  /* Ajuste o tamanho conforme necessário */
     height: 04vh; /* Ajuste o tamanho conforme necessário */
     vertical-align: middle;
 }
 
-.btneditar{
-    margin-left: 30px;
-}
 
 .icone-lixeira{
     background-color: #f44336;
     
 }
-
+.icone-editar{
+    background-color:#4ccdd9 ;
+}
 
 /* Estilo para o botão "Deletar" quando hover */
 
+
+.resultados {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.resultado-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.resultado-item h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.resultado-item p {
+    margin: 5px 0;
+}
 
 
 

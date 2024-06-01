@@ -34,7 +34,7 @@ function deletarDocumento(userID, documentoKey) {
     remove(publicoRef)
         .then(() => {
             console.log('Documento no Realtime Database deletado com sucesso.');
-            
+
             // Agora, exclua o arquivo no Firebase Storage
             const storageRef1 = storageRef(storage, `arquivos/${userID}/${documentoKey}`);
             deleteObject(storageRef1)
@@ -49,6 +49,15 @@ function deletarDocumento(userID, documentoKey) {
         .catch((error) => {
             console.error('Erro ao deletar documento no Realtime Database:', error);
         });
+
+        alert("Arquivo removido com sucesso")
+        location.reload(true);
+}
+
+// Função de edição de documento (a ser implementada)
+function editarDocumento(userID, documentoKey) {
+    // Ir para a janela de Edicao
+console.log("Butao funcionando");
 }
 
 // Função para puxar e exibir os dados do perfil do usuário
@@ -82,51 +91,49 @@ function exibirPerfilUsuario(userID) {
             Object.keys(documentosData).forEach((documentoKey) => {
                 const documento = documentosData[documentoKey];
                 const tr = document.createElement('tr');
+                const dataCriacao = new Date(documento.Horario).toLocaleString(); // Convertendo para data e hora
                 tr.innerHTML = `
                     <td>${documento.Titulo}</td>
-                    <td>${documento.Horario}</td>
+                    <td>${dataCriacao}</td>
                 `;
+
                 const tdAcao = document.createElement('td');
 
-                // Botão de deletar
-                const btnDeletar = document.createElement('button');
-                const imgLixeira = document.createElement('img');
-                imgLixeira.src = 'delete.png';  // Substitua pelo caminho correto da sua imagem
-                imgLixeira.alt = 'Deletar';
-                imgLixeira.classList.add('icone-lixeira');
-                btnDeletar.classList.add('btn-deletar');
-                btnDeletar.onclick = function() {
-                    deletarDocumento(userID, documentoKey);
-                };
-                btnDeletar.appendChild(imgLixeira);
+                function criarbutao(Nomeimagem, NomeButao, NomeIcone,Acao) {
+                    const butao = document.createElement('div');
+                    const imagem = document.createElement('img');
+                    imagem.src = Nomeimagem; 
+                    imagem.classList.add(NomeIcone);
+                    butao.classList.add(NomeButao);
+                    butao.onclick = function () {
+                        if(Acao == 'deletar'){
+                        deletarDocumento(userID, documentoKey);
+                        }
+                        else{
+                            editarDocumento(userID, documentoKey)                        }
+                    };
+                    butao.appendChild(imagem);
 
-                // Botão de editar
-                const btnEditar = document.createElement('button');
-                const imgEditar = document.createElement('img');
-                imgEditar.src = 'edit.png';  // Substitua pelo caminho correto da sua imagem
-                imgEditar.alt = 'Editar';
-                imgEditar.classList.add('icone-editar');
-                btnEditar.classList.add('btn-editar');
-                btnEditar.onclick = function() {
-                    editarDocumento(userID, documentoKey);
-                };
-                btnEditar.appendChild(imgEditar);
 
-                // Adicionando os botões à célula da tabela
-                tdAcao.appendChild(btnDeletar);
-                tdAcao.appendChild(btnEditar);
+                    tdAcao.appendChild(butao);
+
                 tr.appendChild(tdAcao);
                 document.getElementById('artigosTableBody').appendChild(tr);
+                }
+
+                criarbutao('delete.png','btn-deletar', 'icone-lixeira','deletar');
+
+                // Botão de deletar
+                criarbutao('edit.png','btnEditar','icone-editar','EDITAR')
+
+                // Botão de editar
+                
             });
         }
     });
 }
 
-// Função de edição de documento (a ser implementada)
-function editarDocumento(userID, documentoKey) {
-    // Lógica para editar o documento
-    console.log('Editar documento:', userID, documentoKey);
-}
+
 
 
 // Verificar a autenticação do usuário

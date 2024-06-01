@@ -18,15 +18,12 @@ const auth = getAuth();
 const db = getDatabase();
 
 // Função para converter timestamp em uma string de data legível
+// Função para converter timestamp em uma string de data legível
 function formatarData(timestamp) {
     const data = new Date(timestamp);
-    const dia = String(data.getDate()).padStart(2, '0');
-    const mes = String(data.getMonth() + 1).padStart(2, '0');
-    const ano = data.getFullYear();
-    const horas = String(data.getHours()).padStart(2, '0');
-    const minutos = String(data.getMinutes()).padStart(2, '0');
-    return `${dia}/${mes}/${ano} ${horas}:${minutos}`;
+    return data.toLocaleString();
 }
+
 
 const registroForm = document.getElementById('registroForm');
 
@@ -51,7 +48,7 @@ registroForm.addEventListener('submit', (e) => {
                 nome: nome,
                 email: email,
                 dataNcto: data,
-                criacao: formatarData(Date.now())  // Formatar a data de criação
+                criacao: formatarData(Date.now()) // Armazenar a data de criação formatada
             });
         })
         .then(() => {

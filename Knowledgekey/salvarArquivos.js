@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
 
 // Configurações do Firebase
 const firebaseConfig = {
@@ -13,17 +13,24 @@ const firebaseConfig = {
     measurementId: "G-TF9SB5NB75"
 };
 
-var fileInput = document.getElementById('pdfFile')
+// Inicializa o Firebase
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
 
-var ref = firebase.storage().ref('arquivos')
+const fileInput = document.getElementById('pdfFile');
 
-fileInput.onchange = function(event){
-    var arquivo = event.target.files[0];
+fileInput.onchange = function(event) {
+    const arquivo = event.target.files[0];
+    const arquivoNome = arquivo.name; // Obtém o nome original do arquivo
 
-    ref.child('arquivo').put(arquivo).then(snapshot =>{
-        console.log('snapshot', snapshot);
-        ref.child('arquivo').getDownloadURL().then(url => {
-            console.log('string para download',url)
-        })
+    const arquivoRef = ref(storage, 'arquivos/' + arquivoNome);
+
+    uploadBytes(arquivoRef, arquivo).then(snapshot => {
+        console.log('Snapshot:', snapshot);
+        getDownloadURL(arquivoRef).then(url => {
+            console.log('URL para download:', url);
+        });
+    }).catch(error => {
+        console.error('Erro ao fazer upload do arquivo:', error);
     });
-}
+};

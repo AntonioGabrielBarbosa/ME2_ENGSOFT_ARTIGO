@@ -17,8 +17,6 @@ const firebaseConfig = {
 
 // Inicialize o Firebase
 const app = initializeApp(firebaseConfig);
-
-// Referência ao banco de dados
 const database = getDatabase(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
@@ -26,11 +24,10 @@ const storage = getStorage(app);
 // Função para deletar um documento
 function deletarDocumento(userID, documentoKey) {
     const documentoRef = ref(database, `ForumarioDeEnvio/${userID}/${documentoKey}`);
-
-    const publicoRef = ref(database, `Público/${documentoKey}`)
+    const publicoRef = ref(database, `Público/${documentoKey}`);
 
     // Excluir do Realtime Database
-    remove(documentoRef)
+    remove(documentoRef);
     remove(publicoRef)
         .then(() => {
             console.log('Documento no Realtime Database deletado com sucesso.');
@@ -44,23 +41,19 @@ function deletarDocumento(userID, documentoKey) {
                 .catch((error) => {
                     console.error('Erro ao deletar arquivo no Firebase Storage:', error);
                 });
-
         })
         .catch((error) => {
             console.error('Erro ao deletar documento no Realtime Database:', error);
         });
 }
 
-// Função para puxar e exibir os dados do perfil do usuário
+// Função para exibir o perfil do usuário e os artigos
 function exibirPerfilUsuario(userID) {
-    // Referência ao nó do usuário no banco de dados
     const userRef = ref(database, 'usuarios/' + userID);
 
-    // Observando as mudanças nos dados do usuário
     onValue(userRef, (snapshot) => {
         const userData = snapshot.val();
         if (userData) {
-            // Atualizar os elementos HTML com os dados do usuário
             document.getElementById('nome1').textContent = userData.nome;
             document.getElementById('nome').textContent = userData.nome;
             document.getElementById('email').textContent = userData.email;
@@ -68,30 +61,27 @@ function exibirPerfilUsuario(userID) {
         }
     });
 
-    // Referência ao nó dos documentos do usuário no banco de dados
     const documentosRef = ref(database, 'ForumarioDeEnvio/' + userID);
 
-    // Observando as mudanças nos dados dos documentos do usuário
     onValue(documentosRef, (snapshot) => {
         const documentosData = snapshot.val();
         if (documentosData) {
-            // Limpar a tabela antes de adicionar novos dados
             document.getElementById('artigosTableBody').innerHTML = '';
 
-            // Iterar sobre os documentos e criar linhas na tabela
             Object.keys(documentosData).forEach((documentoKey) => {
                 const documento = documentosData[documentoKey];
                 const tr = document.createElement('tr');
+                const dataCriacao = new Date(documento.Horario).toLocaleString(); // Convertendo para data e hora
+
                 tr.innerHTML = `
                     <td>${documento.Titulo}</td>
-                    <td>${documento.Horario}</td>
+                    <td>${dataCriacao}</td>
                 `;
                 const tdAcao = document.createElement('td');
 
-                // Botão de deletar
                 const btnDeletar = document.createElement('button');
                 const imgLixeira = document.createElement('img');
-                imgLixeira.src = 'delete.png';  // Substitua pelo caminho correto da sua imagem
+                imgLixeira.src = 'delete.png';
                 imgLixeira.alt = 'Deletar';
                 imgLixeira.classList.add('icone-lixeira');
                 btnDeletar.classList.add('btn-deletar');
@@ -100,10 +90,9 @@ function exibirPerfilUsuario(userID) {
                 };
                 btnDeletar.appendChild(imgLixeira);
 
-                // Botão de editar
                 const btnEditar = document.createElement('button');
                 const imgEditar = document.createElement('img');
-                imgEditar.src = 'edit.png';  // Substitua pelo caminho correto da sua imagem
+                imgEditar.src = 'edit.png';
                 imgEditar.alt = 'Editar';
                 imgEditar.classList.add('icone-editar');
                 btnEditar.classList.add('btn-editar');
@@ -112,7 +101,6 @@ function exibirPerfilUsuario(userID) {
                 };
                 btnEditar.appendChild(imgEditar);
 
-                // Adicionando os botões à célula da tabela
                 tdAcao.appendChild(btnDeletar);
                 tdAcao.appendChild(btnEditar);
                 tr.appendChild(tdAcao);
@@ -124,18 +112,14 @@ function exibirPerfilUsuario(userID) {
 
 // Função de edição de documento (a ser implementada)
 function editarDocumento(userID, documentoKey) {
-    // Lógica para editar o documento
     console.log('Editar documento:', userID, documentoKey);
 }
-
 
 // Verificar a autenticação do usuário
 auth.onAuthStateChanged((user) => {
     if (user) {
-        // Se o usuário estiver autenticado, exibir o perfil
         exibirPerfilUsuario(user.uid);
     } else {
-        // Se o usuário não estiver autenticado, faça algo (por exemplo, redirecionar para a página de login)
         console.log("Usuário não autenticado");
     }
 });

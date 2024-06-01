@@ -18,7 +18,6 @@
     </a>
 </header>
 
-
 <body>
     <div class='titulo'>
         KnowledgeKey
@@ -26,10 +25,11 @@
     <div class='search-box'>
         <input type="text" class="search-text" placeholder="Pesquisar..." id="pesquisar">
         <div class="filter">
-            <select>
-                <option value="">1</option>
-                <option value="">2</option>
-                <option value="">3</option>
+            <select id="filterSelect">
+                <option value="all">Todos</option>
+                <option value="Autor">1</option>
+                <option value="Titulo">2</option>
+                <option value="nome do arquivo">3</option>
             </select>
         </div>
         <button class="search-btn" id="botaoPesquisar">
@@ -38,8 +38,7 @@
     </div>
 
     <div id="resultadosBusca"></div>
-<script type="module" src="pesquisar.js"></script>
-
+    <script type="module" src="pesquisar.js"></script>
 </body>
 
 </html>

@@ -17,6 +17,8 @@ const firebaseConfig = {
 
 // Inicialize o Firebase
 const app = initializeApp(firebaseConfig);
+
+// Referência ao banco de dados
 const database = getDatabase(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
@@ -24,14 +26,15 @@ const storage = getStorage(app);
 // Função para deletar um documento
 function deletarDocumento(userID, documentoKey) {
     const documentoRef = ref(database, `ForumarioDeEnvio/${userID}/${documentoKey}`);
-    const publicoRef = ref(database, `Público/${documentoKey}`);
+
+    const publicoRef = ref(database, `Público/${documentoKey}`)
 
     // Excluir do Realtime Database
-    remove(documentoRef);
+    remove(documentoRef)
     remove(publicoRef)
         .then(() => {
             console.log('Documento no Realtime Database deletado com sucesso.');
-            
+
             // Agora, exclua o arquivo no Firebase Storage
             const storageRef1 = storageRef(storage, `arquivos/${userID}/${documentoKey}`);
             deleteObject(storageRef1)
@@ -41,19 +44,32 @@ function deletarDocumento(userID, documentoKey) {
                 .catch((error) => {
                     console.error('Erro ao deletar arquivo no Firebase Storage:', error);
                 });
+
         })
         .catch((error) => {
             console.error('Erro ao deletar documento no Realtime Database:', error);
         });
+
+        alert("Arquivo removido com sucesso")
+        location.reload(true);
 }
 
-// Função para exibir o perfil do usuário e os artigos
+// Função de edição de documento (a ser implementada)
+function editarDocumento(userID, documentoKey) {
+    // Ir para a janela de Edicao
+console.log("Butao funcionando");
+}
+
+// Função para puxar e exibir os dados do perfil do usuário
 function exibirPerfilUsuario(userID) {
+    // Referência ao nó do usuário no banco de dados
     const userRef = ref(database, 'usuarios/' + userID);
 
+    // Observando as mudanças nos dados do usuário
     onValue(userRef, (snapshot) => {
         const userData = snapshot.val();
         if (userData) {
+            // Atualizar os elementos HTML com os dados do usuário
             document.getElementById('nome1').textContent = userData.nome;
             document.getElementById('nome').textContent = userData.nome;
             document.getElementById('email').textContent = userData.email;
@@ -61,65 +77,72 @@ function exibirPerfilUsuario(userID) {
         }
     });
 
+    // Referência ao nó dos documentos do usuário no banco de dados
     const documentosRef = ref(database, 'ForumarioDeEnvio/' + userID);
 
+    // Observando as mudanças nos dados dos documentos do usuário
     onValue(documentosRef, (snapshot) => {
         const documentosData = snapshot.val();
         if (documentosData) {
+            // Limpar a tabela antes de adicionar novos dados
             document.getElementById('artigosTableBody').innerHTML = '';
 
+            // Iterar sobre os documentos e criar linhas na tabela
             Object.keys(documentosData).forEach((documentoKey) => {
                 const documento = documentosData[documentoKey];
                 const tr = document.createElement('tr');
                 const dataCriacao = new Date(documento.Horario).toLocaleString(); // Convertendo para data e hora
-
                 tr.innerHTML = `
                     <td>${documento.Titulo}</td>
                     <td>${dataCriacao}</td>
                 `;
+
                 const tdAcao = document.createElement('td');
 
-                const btnDeletar = document.createElement('button');
-                const imgLixeira = document.createElement('img');
-                imgLixeira.src = 'delete.png';
-                imgLixeira.alt = 'Deletar';
-                imgLixeira.classList.add('icone-lixeira');
-                btnDeletar.classList.add('btn-deletar');
-                btnDeletar.onclick = function() {
-                    deletarDocumento(userID, documentoKey);
-                };
-                btnDeletar.appendChild(imgLixeira);
+                function criarbutao(Nomeimagem, NomeButao, NomeIcone,Acao) {
+                    const butao = document.createElement('div');
+                    const imagem = document.createElement('img');
+                    imagem.src = Nomeimagem; 
+                    imagem.classList.add(NomeIcone);
+                    butao.classList.add(NomeButao);
+                    butao.onclick = function () {
+                        if(Acao == 'deletar'){
+                        deletarDocumento(userID, documentoKey);
+                        }
+                        else{
+                            editarDocumento(userID, documentoKey)                        }
+                    };
+                    butao.appendChild(imagem);
 
-                const btnEditar = document.createElement('button');
-                const imgEditar = document.createElement('img');
-                imgEditar.src = 'edit.png';
-                imgEditar.alt = 'Editar';
-                imgEditar.classList.add('icone-editar');
-                btnEditar.classList.add('btn-editar');
-                btnEditar.onclick = function() {
-                    editarDocumento(userID, documentoKey);
-                };
-                btnEditar.appendChild(imgEditar);
 
-                tdAcao.appendChild(btnDeletar);
-                tdAcao.appendChild(btnEditar);
+                    tdAcao.appendChild(butao);
+
                 tr.appendChild(tdAcao);
                 document.getElementById('artigosTableBody').appendChild(tr);
+                }
+
+                criarbutao('delete.png','btn-deletar', 'icone-lixeira','deletar');
+
+                // Botão de deletar
+                criarbutao('edit.png','btnEditar','icone-editar','EDITAR')
+
+                // Botão de editar
+                
             });
         }
     });
 }
 
-// Função de edição de documento (a ser implementada)
-function editarDocumento(userID, documentoKey) {
-    console.log('Editar documento:', userID, documentoKey);
-}
+
+
 
 // Verificar a autenticação do usuário
 auth.onAuthStateChanged((user) => {
     if (user) {
+        // Se o usuário estiver autenticado, exibir o perfil
         exibirPerfilUsuario(user.uid);
     } else {
+        // Se o usuário não estiver autenticado, faça algo (por exemplo, redirecionar para a página de login)
         console.log("Usuário não autenticado");
     }
 });

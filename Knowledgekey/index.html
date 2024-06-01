@@ -8,28 +8,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<header>
-    <a href="login.html">
-        <button class='btn-fazerLogin'>Publique seu artigo</button>
-    </a>
-
-    <a href="formulario.html">
-        <button class='btn-meuPerfil'>Deixe aqui sua dúvida</button>
-    </a>
-</header>
-
 <body>
+    <header>
+        <a href="login.html">
+            <button class='btn-fazerLogin'>Publique seu artigo</button>
+        </a>
+
+        <a href="formulario.html">
+            <button class='btn-meuPerfil'>Deixe aqui sua dúvida</button>
+        </a>
+    </header>
+
     <div class='titulo'>
         KnowledgeKey
     </div>
     <div class='search-box'>
         <input type="text" class="search-text" placeholder="Pesquisar..." id="pesquisar">
         <div class="filter">
-            <select id="filterSelect">
-                <option value="all">Todos</option>
-                <option value="Autor">1</option>
-                <option value="Titulo">2</option>
-                <option value="nome do arquivo">3</option>
+            <select>
+                <option value="">1</option>
+                <option value="">2</option>
+                <option value="">3</option>
             </select>
         </div>
         <button class="search-btn" id="botaoPesquisar">
@@ -37,7 +36,8 @@
         </button>
     </div>
 
-    <div id="resultadosBusca"></div>
+    <div id="resultadosBusca" class="resultados"></div>
+
     <script type="module" src="pesquisar.js"></script>
 </body>
 

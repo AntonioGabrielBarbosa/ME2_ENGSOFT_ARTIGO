@@ -17,13 +17,11 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getDatabase();
 
-// Função para converter timestamp em uma string de data legível
-// Função para converter timestamp em uma string de data legível
+
 function formatarData(timestamp) {
     const data = new Date(timestamp);
     return data.toLocaleString();
 }
-
 
 const registroForm = document.getElementById('registroForm');
 

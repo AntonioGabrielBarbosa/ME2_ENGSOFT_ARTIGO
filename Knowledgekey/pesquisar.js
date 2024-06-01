@@ -45,4 +45,9 @@ function listarDocumentos() {
 }
 
 // Chama a função para listar documentos ao carregar a página
+<<<<<<< HEAD
 window.onload = listarDocumentos;
+=======
+window.onload = listarDocumentos;
+
+>>>>>>> de6b9a0a7f87908647f4b358c0f208cab8423b05

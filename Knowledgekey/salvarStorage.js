@@ -54,7 +54,7 @@ formSub.addEventListener('submit', async (e) => {
         // Obter a chave única gerada
         const newPostKey = newPostRef.key;
 
-        const newFormsRef= push(ref(database, 'Público/'+newPostKey));
+        const newFormsRef= push((database, 'Público/'));
         const storageReference = storageRef(storage, 'arquivos/' + userId + '/' + newPostKey);
         await uploadBytes(storageReference, pdfFile);
 
@@ -93,6 +93,7 @@ formSub.addEventListener('submit', async (e) => {
 
         // Operação concluída com sucesso
         alert('Formulário enviado com sucesso!');
+        window.location.href = `perfil.html?userId=${userId}`;
     } catch (error) {
         // Lidar com erros
         console.error('Erro ao enviar formulário:', error);

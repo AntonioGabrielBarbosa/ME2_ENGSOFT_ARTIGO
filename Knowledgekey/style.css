@@ -659,6 +659,11 @@ td .btn-deletar, td .btnEditar{
 
 
 
+.resultado-item{
+    background-color: #514869;
+    color: #f9f9f9;
+}
+
 
 /*----------------------------------------------------------------------------------------------------*/
 /*RESPONSIBILIDADE*/

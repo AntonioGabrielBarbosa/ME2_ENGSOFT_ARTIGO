@@ -25,8 +25,8 @@ const storage = getStorage(app);
 
 // Função para deletar um documento
 function deletarDocumento(userID, documentoKey) {
-    const documentoRef = ref(database, `ForumarioDeEnvio/${userID}/${documentoKey}`);
-    const publicoRef = ref(database, `Público/${documentoKey}`);
+    const documentoRef = ref(database, `FormulariosDeEnvio/${userID}/${documentoKey}`);
+    const publicoRef = ref(database, `Publico/${documentoKey}`);
 
     // Excluir do Realtime Database
     remove(documentoRef);
@@ -77,7 +77,7 @@ function exibirPerfilUsuario(userID) {
     });
 
     // Referência ao nó dos documentos do usuário no banco de dados
-    const documentosRef = ref(database, 'ForumarioDeEnvio/' + userID);
+    const documentosRef = ref(database, 'FormulariosDeEnvio/' + userID);
 
     // Observando as mudanças nos dados dos documentos do usuário
     onValue(documentosRef, async (snapshot) => {
@@ -95,7 +95,6 @@ function exibirPerfilUsuario(userID) {
                     tr.innerHTML = `
                         <td>${documento.Titulo}</td>
                         <td>${dataCriacao}</td>
-                        <td><a href="${documento.PDF_URL}" target="_blank">Abrir PDF</a></td>
                     `;
 
                     const tdAcao = document.createElement('td');
